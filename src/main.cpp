@@ -167,11 +167,8 @@ SDL_AppResult SDL_AppIterate(void* appstate)
     return SDL_APP_CONTINUE;
 }
 
-SDL_AppResult SDL_AppEvent(void* appstate, SDL_Event* event)
+SDL_AppResult SDL_AppEvent(void*, SDL_Event* event)
 {
-    auto& state {*static_cast<AppState*>(appstate)};
-    state.timeStartFps = SDL_GetTicks();
-
     if (event == nullptr) {
         SDL_Log("SDL_Event: Couldn't get event");
         return SDL_APP_FAILURE;
