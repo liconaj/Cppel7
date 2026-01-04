@@ -1,0 +1,319 @@
+# =============================================================================
+# .clang-tidy - Static Analysis Configuration
+# =============================================================================
+#
+# Run with: clang-tidy -p build src/*.cpp
+# Or integrate with CMake: set(CMAKE_CXX_CLANG_TIDY "clang-tidy")
+#
+# To generate compile_commands.json (required):
+#   cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ..
+#
+# =============================================================================
+
+---
+# -----------------------------------------------------------------------------
+# CHECKS CONFIGURATION
+# -----------------------------------------------------------------------------
+#
+# Format: -* disables all, then we enable specific categories
+#
+# Categories:
+#   bugprone-*        : Common bug patterns
+#   clang-analyzer-*  : Deep static analysis (null pointers, memory leaks)
+#   modernize-*       : Modern C++ suggestions (C++11/14/17)
+#   performance-*     : Performance issues
+#   readability-*     : Code clarity (selective)
+#   misc-*            : Miscellaneous useful checks
+#
+# -----------------------------------------------------------------------------
+
+Checks: >
+  -*,
+  bugprone-*,
+    -bugprone-easily-swappable-parameters,
+    -bugprone-narrowing-conversions,
+  clang-analyzer-*,
+    -clang-analyzer-cplusplus.NewDeleteLeaks,
+  misc-*,
+    -misc-non-private-member-variables-in-classes,
+    -misc-no-recursion,
+    -misc-include-cleaner,
+  modernize-*,
+    -modernize-avoid-c-arrays,
+    -modernize-use-trailing-return-type,
+    -modernize-concat-nested-namespaces,
+  performance-*,
+    -performance-enum-size,
+  readability-identifier-naming,
+  readability-redundant-*,
+  readability-simplify-*,
+    -readability-simplify-boolean-expr,
+  readability-container-size-empty,
+  readability-delete-null-pointer,
+  readability-make-member-function-const,
+  readability-non-const-parameter,
+  readability-static-accessed-through-instance,
+  readability-string-compare,
+  readability-avoid-const-params-in-decls,
+  readability-const-return-type,
+  readability-misleading-indentation,
+  readability-misplaced-array-index,
+
+# -----------------------------------------------------------------------------
+# WHY CERTAIN CHECKS ARE DISABLED
+# -----------------------------------------------------------------------------
+#
+# -bugprone-easily-swappable-parameters
+#     Too noisy for functions like func(int x, int y)
+#
+# -bugprone-narrowing-conversions
+#     Overlaps with compiler warnings, too strict
+#
+# -clang-analyzer-cplusplus.NewDeleteLeaks
+#     False positives with smart pointers
+#
+# -misc-non-private-member-variables-in-classes
+#     Disallows public members, too strict for POD structs
+#
+# -misc-no-recursion
+#     Recursion is sometimes the right solution
+#
+# -misc-include-cleaner
+#     Requires additional setup, can be noisy
+#
+# -modernize-avoid-c-arrays
+#     C arrays are sometimes needed (main argv, fixed buffers)
+#
+# -modernize-use-trailing-return-type
+#     Style preference, auto func() -> int is not always clearer
+#
+# -modernize-concat-nested-namespaces
+#     C++17 feature, but nested style is often more readable
+#
+# -----------------------------------------------------------------------------
+
+# Treat all enabled checks as warnings (not errors)
+WarningsAsErrors: ''
+
+# Analyze headers in src/ directory
+HeaderFilterRegex: 'src/.*'
+
+# Use .clang-format for fix suggestions
+FormatStyle: file
+
+# -----------------------------------------------------------------------------
+# CHECK OPTIONS
+# -----------------------------------------------------------------------------
+
+CheckOptions:
+  # ---------------------------------------------------------------------------
+  # NAMING CONVENTIONS
+  # ---------------------------------------------------------------------------
+  #
+  # Style:
+  #   - Classes/Structs/Enums: PascalCase
+  #   - Functions/Methods: camelCase
+  #   - Variables: camelCase
+  #   - Member variables: m_camelCase
+  #   - Constants/Macros: UPPER_CASE
+  #   - Namespaces: lowercase (or snake_case)
+  #
+  # ---------------------------------------------------------------------------
+
+  # --- Namespaces ---
+  - key: readability-identifier-naming.NamespaceCase
+    value: lower_case
+
+  # --- Classes, Structs, Enums ---
+  - key: readability-identifier-naming.ClassCase
+    value: CamelCase
+
+  - key: readability-identifier-naming.StructCase
+    value: CamelCase
+
+  - key: readability-identifier-naming.EnumCase
+    value: CamelCase
+
+  - key: readability-identifier-naming.EnumConstantCase
+    value: CamelCase
+
+  - key: readability-identifier-naming.TypeAliasCase
+    value: CamelCase
+
+  - key: readability-identifier-naming.TypedefCase
+    value: CamelCase
+
+  - key: readability-identifier-naming.UnionCase
+    value: CamelCase
+
+  # --- Template Parameters ---
+  - key: readability-identifier-naming.TemplateParameterCase
+    value: CamelCase
+
+  # --- Functions and Methods ---
+  - key: readability-identifier-naming.FunctionCase
+    value: camelCase
+
+  - key: readability-identifier-naming.MethodCase
+    value: camelCase
+
+  # --- Variables ---
+  - key: readability-identifier-naming.VariableCase
+    value: camelCase
+
+  - key: readability-identifier-naming.ParameterCase
+    value: camelCase
+
+  - key: readability-identifier-naming.LocalVariableCase
+    value: camelCase
+
+  # --- Member Variables (m_camelCase) ---
+  - key: readability-identifier-naming.MemberCase
+    value: camelCase
+
+  - key: readability-identifier-naming.MemberPrefix
+    value: 'm_'
+
+  - key: readability-identifier-naming.PrivateMemberCase
+    value: camelCase
+
+  - key: readability-identifier-naming.PrivateMemberPrefix
+    value: 'm_'
+
+  - key: readability-identifier-naming.ProtectedMemberCase
+    value: camelCase
+
+  - key: readability-identifier-naming.ProtectedMemberPrefix
+    value: 'm_'
+
+  # --- Public members in structs (no prefix for POD) ---
+  - key: readability-identifier-naming.PublicMemberCase
+    value: camelCase
+
+  - key: readability-identifier-naming.PublicMemberPrefix
+    value: ''
+
+  # --- Static Members ---
+  - key: readability-identifier-naming.StaticVariableCase
+    value: camelCase
+
+  - key: readability-identifier-naming.ClassMemberCase
+    value: camelCase
+
+  - key: readability-identifier-naming.ClassMemberPrefix
+    value: 's_'
+
+  # --- Constants and Macros ---
+  - key: readability-identifier-naming.ConstexprVariableCase
+    value: UPPER_CASE
+
+  - key: readability-identifier-naming.GlobalConstantCase
+    value: UPPER_CASE
+
+  - key: readability-identifier-naming.StaticConstantCase
+    value: UPPER_CASE
+
+  - key: readability-identifier-naming.MacroDefinitionCase
+    value: UPPER_CASE
+
+  - key: readability-identifier-naming.EnumConstantCase
+    value: CamelCase
+
+  # --- Global Variables (discouraged, but if used) ---
+  - key: readability-identifier-naming.GlobalVariableCase
+    value: camelCase
+
+  - key: readability-identifier-naming.GlobalVariablePrefix
+    value: 'g_'
+
+  # ---------------------------------------------------------------------------
+  # MAGIC NUMBERS
+  # ---------------------------------------------------------------------------
+
+  - key: readability-magic-numbers.IgnoredIntegerValues
+    value: '0;1;2;-1'
+
+  - key: readability-magic-numbers.IgnoredFloatingPointValues
+    value: '0.0;1.0;0.5;-1.0'
+
+  # ---------------------------------------------------------------------------
+  # MODERNIZE OPTIONS
+  # ---------------------------------------------------------------------------
+
+  # Prefer nullptr over NULL or 0
+  - key: modernize-use-nullptr.NullMacros
+    value: 'NULL'
+
+  # Suggest override for virtual methods
+  - key: modernize-use-override.AllowOverrideAndFinal
+    value: 'false'
+
+  # Use auto when type is obvious
+  - key: modernize-use-auto.MinTypeNameLength
+    value: '5'
+
+  - key: modernize-use-auto.RemoveStars
+    value: 'false'
+
+  # ---------------------------------------------------------------------------
+  # PERFORMANCE OPTIONS
+  # ---------------------------------------------------------------------------
+
+  # Suggest move semantics
+  - key: performance-move-const-arg.CheckTriviallyCopyableMove
+    value: 'true'
+
+  # Suggest passing by reference for large objects
+  - key: performance-unnecessary-value-param.AllowedTypes
+    value: ''
+
+  # ---------------------------------------------------------------------------
+  # MISC OPTIONS
+  # ---------------------------------------------------------------------------
+
+  # Const correctness
+  - key: misc-const-correctness.WarnPointersAsValues
+    value: 'false'
+
+  - key: misc-const-correctness.TransformPointersAsValues
+    value: 'false'
+
+# -----------------------------------------------------------------------------
+# EXAMPLE COMPLIANT CODE
+# -----------------------------------------------------------------------------
+#
+# namespace myapp {
+#
+#     constexpr int MAX_BUFFER_SIZE = 1024;
+#
+#     enum class Status {
+#         Success,
+#         Error,
+#         Pending
+#     };
+#
+#     class FileProcessor
+#     {
+#     public:
+#         explicit FileProcessor(const std::string& path);
+#
+#         bool processFile();
+#         int getLineCount() const { return m_lineCount; }
+#
+#     private:
+#         void parseContent();
+#
+#         std::string m_filePath;
+#         int m_lineCount = 0;
+#         bool m_isValid = false;
+#     };
+#
+#     struct Config {
+#         std::string inputPath;
+#         std::string outputPath;
+#         bool verbose = false;
+#     };
+#
+# } // namespace myapp
+#
+# -----------------------------------------------------------------------------

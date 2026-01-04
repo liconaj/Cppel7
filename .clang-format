@@ -1,0 +1,274 @@
+# =============================================================================
+# .clang-format - Code Style Configuration
+# =============================================================================
+
+---
+# -----------------------------------------------------------------------------
+# BASE CONFIGURATION
+# -----------------------------------------------------------------------------
+
+# C++17 standard for parsing
+Standard: c++17
+
+# WebKit style: 4-space indent, Allman braces for functions
+BasedOnStyle: WebKit
+
+# -----------------------------------------------------------------------------
+# GENERAL FORMATTING
+# -----------------------------------------------------------------------------
+
+# Maximum line width
+ColumnLimit: 100
+
+# Main indentation: 4 spaces
+IndentWidth: 4
+
+# Continuation line indentation
+ContinuationIndentWidth: 4
+
+# Use spaces, not tabs
+UseTab: Never
+
+# -----------------------------------------------------------------------------
+# POINTERS AND REFERENCES
+# Modern style: attached to type (int* ptr, int& ref)
+# -----------------------------------------------------------------------------
+
+# Pointer and reference align to the left (attached to type)
+PointerAlignment: Left
+PointerBindsToType: true
+ReferenceAlignment: Left
+
+# Result:
+#   int* pointer;
+#   int& reference;
+#   const std::string* text;
+
+# -----------------------------------------------------------------------------
+# BRACES
+# Allman style for functions/classes, K&R for control flow
+# -----------------------------------------------------------------------------
+
+BreakBeforeBraces: Custom
+BraceWrapping:
+  # Classes and structs: brace on new line
+  AfterClass: true
+  AfterStruct: true
+
+  # Functions: brace on new line
+  AfterFunction: true
+
+  # Control flow (if/for/while): brace on same line
+  AfterControlStatement: false
+
+  # Enums and unions: brace on same line
+  AfterEnum: false
+  AfterUnion: false
+
+  # Namespaces: brace on same line
+  AfterNamespace: false
+
+  # else and catch: on same line as }
+  BeforeElse: false
+  BeforeCatch: false
+
+  # Don't indent braces themselves
+  IndentBraces: false
+
+  # Split empty {} in classes/structs
+  SplitEmptyRecord: true
+
+  # Split empty {} in functions on one line
+  SplitEmptyFunction: true
+
+# Result:
+#
+#   void function()
+#   {
+#       if (condition) {
+#           // code
+#       } else {
+#           // other
+#       }
+#   }
+
+# -----------------------------------------------------------------------------
+# NAMESPACES
+# Indent namespace contents
+# -----------------------------------------------------------------------------
+
+# Don't indent namespace content
+NamespaceIndentation: None
+
+# Add "// namespace X" comment on close (if > 10 lines)
+FixNamespaceComments: true
+ShortNamespaceLines: 10
+
+# Result:
+#
+#   namespace project {
+#       void function();
+#   } // namespace project
+
+# -----------------------------------------------------------------------------
+# CONSTRUCTORS AND INITIALIZERS
+# Colon on new line, commas at the beginning
+# -----------------------------------------------------------------------------
+
+# Break before colon
+BreakConstructorInitializers: BeforeColon
+
+# Initializer indentation
+ConstructorInitializerIndentWidth: 4
+
+# Pack if they fit, otherwise one per line
+PackConstructorInitializers: BinPack
+
+# Result:
+#
+#   MyClass::MyClass(int a, int b)
+#       : member1_(a)
+#       , member2_(b)
+#   {
+#   }
+
+# -----------------------------------------------------------------------------
+# TEMPLATES
+# No space after template keyword (most common style)
+# -----------------------------------------------------------------------------
+
+SpaceAfterTemplateKeyword: false
+
+# Always break after template<...>
+AlwaysBreakTemplateDeclarations: Yes
+
+# Result:
+#
+#   template<typename T>
+#   class MyTemplate
+#   {
+#   };
+
+# -----------------------------------------------------------------------------
+# SHORT FUNCTIONS
+# Only allow on single line if inline (getters/setters in headers)
+# -----------------------------------------------------------------------------
+
+AllowShortFunctionsOnASingleLine: InlineOnly
+
+# Result:
+#   int getValue() const { return value_; }  // OK in header
+#
+#   void MyClass::method()  // Always expanded in .cpp
+#   {
+#       // code
+#   }
+
+# -----------------------------------------------------------------------------
+# INCLUDES
+# Sort alphabetically but preserve separated blocks
+# -----------------------------------------------------------------------------
+
+SortIncludes: true
+IncludeBlocks: Preserve
+
+# Result (blocks separated by blank lines are preserved):
+#
+#   #include "myheader.hpp"
+#   #include "other.hpp"
+#
+#   #include <memory>
+#   #include <vector>
+
+# -----------------------------------------------------------------------------
+# OPERATORS AND EXPRESSIONS
+# -----------------------------------------------------------------------------
+
+# Break before binary operators (except assignment)
+BreakBeforeBinaryOperators: NonAssignment
+
+# No spaces inside C++11 braced initialization
+Cpp11BracedListStyle: true
+# Add space before C++11 braced initialization
+SpaceBeforeCpp11BracedList: true
+
+# -----------------------------------------------------------------------------
+# ALIGNMENT
+# -----------------------------------------------------------------------------
+
+# Align arguments with opening parenthesis
+AlignAfterOpenBracket: Align
+
+# Align struct arrays to the left
+AlignArrayOfStructures: Left
+
+# Align macro escapes to the left
+AlignEscapedNewlines: Left
+
+# -----------------------------------------------------------------------------
+# PARAMETERS AND ARGUMENTS
+# -----------------------------------------------------------------------------
+
+# Pack parameters/arguments if they fit
+BinPackParameters: true
+BinPackArguments: true
+
+# Penalize breaking after opening parenthesis
+PenaltyBreakOpenParenthesis: 1000
+
+# Don't allow all arguments on next line
+AllowAllArgumentsOnNextLine: false
+
+# -----------------------------------------------------------------------------
+# RETURN TYPE
+# -----------------------------------------------------------------------------
+
+# Don't break after return type
+AlwaysBreakAfterReturnType: None
+
+# Penalize putting return type on its own line
+PenaltyReturnTypeOnItsOwnLine: 100
+PenaltyBreakAssignment: 1000
+
+# -----------------------------------------------------------------------------
+# PREPROCESSOR
+# -----------------------------------------------------------------------------
+
+# Indent directives after #
+IndentPPDirectives: AfterHash
+
+# 2-space indentation for preprocessor
+PPIndentWidth: 2
+
+# Result:
+#   #ifdef DEBUG
+#   #  define LOG(x) std::cout << x
+#   #endif
+
+# -----------------------------------------------------------------------------
+# SPECIAL MACROS
+# -----------------------------------------------------------------------------
+
+# Macros that behave like foreach
+ForEachMacros:
+  - foreach
+  - BOOST_FOREACH
+
+# Comments that should not be reformatted
+CommentPragmas: "^ SPDX-License-Identifier:|^ Copyright"
+
+# -----------------------------------------------------------------------------
+# OTHER
+# -----------------------------------------------------------------------------
+
+# Allow short enums on a single line
+AllowShortEnumsOnASingleLine: true
+
+# Don't allow short if statements on a single line
+AllowShortIfStatementsOnASingleLine: Never
+
+# Don't allow short loops on a single line
+AllowShortLoopsOnASingleLine: false
+
+# Space before parenthesis in control statements
+SpaceBeforeParens: ControlStatements
