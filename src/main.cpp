@@ -80,14 +80,14 @@ private:
 } // namespace
 
 extern "C" {
-SDL_AppResult SDL_AppInit(void** appState, int, char**)
+SDL_AppResult SDL_AppInit(void** appstate, int, char**)
 {
     const int cellCols {24};
     const int cellRows {16};
     const int cellScale {5};
 
-    *appState = new AppState(cellCols, cellRows, cellScale);
-    auto& state {*static_cast<AppState*>(*appState)};
+    *appstate = new AppState(cellCols, cellRows, cellScale);
+    auto& state {*static_cast<AppState*>(*appstate)};
 
     const std::string title {"Cppel7"};
     const std::string appName {title + ": A fantasy console"};
@@ -133,38 +133,43 @@ SDL_AppResult SDL_AppInit(void** appState, int, char**)
     return SDL_APP_CONTINUE;
 }
 
-SDL_AppResult SDL_AppIterate(void* appState)
+SDL_AppResult SDL_AppIterate(void* appstate)
 {
-    auto& state {*static_cast<AppState*>(appState)};
+    auto& state {*static_cast<AppState*>(appstate)};
 
     SDL_Renderer* renderer {state.getRenderer()};
-
-    int w, h;
-    SDL_GetRenderLogicalPresentation(renderer, &w, &h, nullptr);
 
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
     SDL_RenderClear(renderer);
 
+    // --------------------------------------
+    // Begin drawing
+
+    int w, h;
+    SDL_GetRenderLogicalPresentation(renderer, &w, &h, nullptr);
     const SDL_FRect rect {0.0f, 0.0f, static_cast<float>(w), static_cast<float>(h)};
 
     SDL_SetRenderDrawColor(renderer, 100, 149, 237, SDL_ALPHA_OPAQUE);
     SDL_RenderFillRect(renderer, &rect);
+
+    // End drawing
+    // --------------------------------------
     SDL_RenderPresent(renderer);
 
+    // Adjust FPS
     const double framesPerNs {1e9 / state.fps};
     if (const uint64_t timePassedNs {SDL_GetTicksNS() - state.timeStartFps};
         timePassedNs < framesPerNs) {
         SDL_DelayNS(framesPerNs - timePassedNs);
     }
-
     state.timeStartFps = SDL_GetTicksNS();
 
     return SDL_APP_CONTINUE;
 }
 
-SDL_AppResult SDL_AppEvent(void* appState, SDL_Event* event)
+SDL_AppResult SDL_AppEvent(void* appstate, SDL_Event* event)
 {
-    auto& state {*static_cast<AppState*>(appState)};
+    auto& state {*static_cast<AppState*>(appstate)};
     state.timeStartFps = SDL_GetTicks();
 
     if (event == nullptr) {
