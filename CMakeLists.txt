@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.16...4.1)
+cmake_minimum_required(VERSION 3.19...4.1)
 project(Cppel7)
 
 set(CMAKE_CXX_STANDARD 17)
