@@ -5,7 +5,7 @@ import pathlib
 import logging
 import re
 
-logging.basicConfig(level=logging.ERROR, format="[%(levelname)s] %(message)s")
+logging.basicConfig(level=logging.INFO, format="[%(levelname)s] %(message)s")
 
 TEMPLATE_PLACEHOLDER = "@FONT_DATA@"
 DATA_LINE_PATTERN = re.compile(r"^([.#\s]*)(;+(.*))?$")
@@ -118,6 +118,7 @@ def process_data_file(path: pathlib.Path) -> list[str]:
     :return: List of transformed data lines.
     :raise SystemExit: On first validation error.
     """
+    logging.info(f"Processing data file: {path}")
     output_lines: list[str] = []
 
     try:
@@ -132,6 +133,7 @@ def process_data_file(path: pathlib.Path) -> list[str]:
         logging.error(f"Failed to read file {path}: {exception}")
         raise SystemExit(1)
 
+    logging.info(f"Data file processed successfully ({len(output_lines)} lines)")
     return output_lines
 
 
@@ -145,23 +147,28 @@ def process_template_file(template_path: pathlib.Path, placeholder: str, replace
 
     :raise SystemExit: On open failed.
     """
-
+    logging.info(f"Processing template file: {template_path}")
     expanded_lines: list[str] = []
-
+    template_found: bool = False
+    generated_lines: int = 0
     try:
         with template_path.open("r", encoding="utf-8") as file_handler:
             for line in file_handler:
                 if placeholder not in line:
                     expanded_lines.append(line)
                     continue
+                template_found = True
+                generated_lines += len(replacement)
+                logging.info(f"Placeholder '{placeholder}' found, expanding template")
                 expanded = expand_template_line(line, replacement)
                 expanded_lines.extend(expanded)
             file_handler.close()
-
     except OSError as exception:
         logging.error(f"Failed to read file {template_path}: {exception}")
         raise SystemExit(1)
-
+    if not template_found:
+        logging.warning(f"Placeholder '{placeholder}' not found in template file")
+    logging.info(f"Template expansion completed ({generated_lines} lines generated)")
     return expanded_lines
 
 
@@ -175,9 +182,11 @@ def write_output_file(output_path: pathlib.Path, lines: list[str]) -> None:
     :raise SystemExit: On failed to write to path.
     """
     try:
+        logging.info(f"Writing output file: {output_path}")
         with output_path.open("w", encoding="utf-8") as file_handler:
             file_handler.writelines(lines)
             file_handler.close()
+        logging.info(f"Output file written successfully ({len(lines)} lines)")
     except OSError as exception:
         logging.error(f"Failed to write to file {output_path}: {exception}")
         raise SystemExit(1)
