@@ -5,6 +5,7 @@ if (SDL_VENDORED)
             SDL3
             GIT_REPOSITORY https://github.com/libsdl-org/SDL.git
             GIT_TAG release-${SDL_VERSION}
+            GIT_SHALLOW TRUE
     )
     set(SDL_SHARED ON CACHE BOOL "Build SDL shared library" FORCE)
     set(SDL_STATIC OFF CACHE BOOL "Disable SDL static library build" FORCE)
