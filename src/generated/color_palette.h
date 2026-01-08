@@ -56,7 +56,7 @@ inline constexpr std::array<std::byte, 64> COLOR_PALETTE = {
     // 14: dark beige (#75715e)
     std::byte {94}, std::byte {113}, std::byte {117}, std::byte {0},
     
-    // 15: brown
+    // 15: brown (#3e3d32)
     std::byte {50}, std::byte {61}, std::byte {62}, std::byte {0},
 };
 
