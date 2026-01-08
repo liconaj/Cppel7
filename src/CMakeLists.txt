@@ -22,6 +22,16 @@ generate_from_template(
         DEPENDENT_TARGET ${CPPEL7_EXECUTABLE_NAME}
 )
 
+# Generate color palette
+generate_from_template(
+        TARGET_NAME generate_palette
+        GENERATOR_PATH "${CMAKE_SOURCE_DIR}/tools/gen_palette.py"
+        INPUT_DATA_PATH "${CMAKE_SOURCE_DIR}/data/color_palette.txt"
+        TEMPLATE_PATH "${CMAKE_SOURCE_DIR}/src/color_palette.h.in"
+        OUTPUT_PATH "${GENERATE_OUTPUT_FOLDER}/color_palette.h"
+        DEPENDENT_TARGET ${CPPEL7_EXECUTABLE_NAME}
+)
+
 # Include generated file in target
 target_include_directories(${CPPEL7_EXECUTABLE_NAME} PRIVATE "${GENERATE_OUTPUT_FOLDER}")
 
