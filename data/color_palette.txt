@@ -1,7 +1,7 @@
 # Default cel7 palette
 
 # 0: black (#0b0c0d)
-11 12  13
+11 12 13
 
 # 1: white (#f7f7e6)
 247 247 230
