@@ -1,14 +1,19 @@
 #define SDL_MAIN_USE_CALLBACKS
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_main.h>
+#include <algorithm>
 #include <memory>
 #include <string>
+#include <vector>
+
+#include "font_atlas.h"
 
 // ReSharper disable CppUseStructuredBinding
 // ReSharper disable CppParameterMayBeConstPtrOrRef
 // ReSharper disable CppUseStructuredBinding
 // ReSharper disable CppParameterMayBeConst
 // ReSharper disable CppVariableCanBeMadeConstexpr
+// ReSharper disable CppRedundantParentheses
 
 namespace {
 
@@ -36,8 +41,11 @@ class AppState
 {
 public:
     AppState(int width, int height, int scale = 4)
-        : cellCols(width), cellRows(height), cellScale(scale)
+        : cellCols(width), cellRows(height), cellScale(scale),
+          m_memory(fixedMemorySize + (2 * width * height))
     {
+        // Copy default font in memory vector
+        std::copy_n(cppel7::FONT_ATLAS.begin(), fontAtlasSize, m_memory.begin() + fontAtlasAddr);
     }
 
     SDL_Window* setWindow(SDL_Window* window)
@@ -69,6 +77,11 @@ public:
     const int cellScale;
 
     const int cellSize {7};
+    const int colorPaletteAddr {0x4000};
+    const int fontAtlasAddr {0x4040};
+    const int screenBufferAddr {0x52a0};
+    const int fixedMemorySize {screenBufferAddr - 1};
+    const int fontAtlasSize {96 * 7 * 7};
 
     uint64_t timeStartFps {};
     int fps {60};
@@ -76,6 +89,8 @@ public:
 private:
     std::unique_ptr<SDL_Window, SDLWindowDeleter> m_window;
     std::unique_ptr<SDL_Renderer, SDLRendererDeleter> m_renderer;
+
+    std::pmr::vector<std::byte> m_memory;
 };
 } // namespace
 
