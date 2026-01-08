@@ -11,6 +11,7 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
 # Dependencies
 set(SDL_VERSION 3.4.0)
+set(SDL_VERSION_SHA256 9ac2debb493e0d3e13dbd2729fb91f4bfeb00a0f4dff5e04b73cc9bac276b38d)
 option(SDL_VENDORED "Use SDL vendored libraries" ON)
 include(Dependencies)
 
