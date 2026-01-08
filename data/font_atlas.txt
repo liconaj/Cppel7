@@ -1,4 +1,4 @@
-; font.dat
+; font_atlas.txt
 ; <index> (<ASCII code>) <character>
 
 ; 0 (32) <space>

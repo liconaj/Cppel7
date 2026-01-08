@@ -11,7 +11,7 @@ target_link_libraries(${CPPEL7_EXECUTABLE_NAME}
 # Generate font data header
 set(GENERATE_OUTPUT_FOLDER "${CMAKE_SOURCE_DIR}/src/generated")
 set(FONT_DATA_GENERATOR_TOOL "${CMAKE_SOURCE_DIR}/tools/gen_font.py")
-set(FONT_DATA_FILE "${CMAKE_SOURCE_DIR}/data/font.dat")
+set(FONT_DATA_FILE "${CMAKE_SOURCE_DIR}/data/font_atlas.txt")
 set(FONT_DATA_TEMPLATE "${CMAKE_SOURCE_DIR}/src/font_atlas.h.in")
 set(FONT_DATA_HEADER "${GENERATE_OUTPUT_FOLDER}/font_atlas.h")
 
