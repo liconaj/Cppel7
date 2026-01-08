@@ -1,0 +1,49 @@
+# Default cel7 palette
+
+# 0: black (#0b0c0d)
+11 12  13
+
+# 1: white (#f7f7e6)
+247 247 230
+
+# 2: red (#f71467)
+247 20 103
+
+# 3: orange (#fd971f)
+253 151 31
+
+# 4: yellow (#e6d415)
+230 212 21
+
+# 5: lime (#a0e01f)
+160 224 31
+
+# 6: blue (#46bbff)
+70 187 255
+
+# 7: purple (#a98aff)
+169 138 255
+
+# 8: pink (#f9aaaf9)
+249 170 175
+
+# 9: dark red (#ab3347)
+171 51 71
+
+# 10: dark green (#37946e)
+55 148 110
+
+# 11: dark blue (#2a4669)
+42 70 105
+
+# 12: gray (#7c8d99)
+124 141 153
+
+# 13: beige (#c2beae)
+194 190 174
+
+# 14: dark beige (#75715e)
+117 113 94
+
+# 15: brown
+62 61 50
