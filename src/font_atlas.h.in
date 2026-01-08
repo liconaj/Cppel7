@@ -1,18 +1,18 @@
 // Auto-generated from font.dat - DO NOT EDIT THE DATA
 
-#ifndef CPPEL7_FONT_DATA_H
-#define CPPEL7_FONT_DATA_H
+#ifndef CPPEL7_FONT_ATLAS_H
+#define CPPEL7_FONT_ATLAS_H
 
 #include <array>
 
 namespace cppel7 {
 
 // 96 sprites x 49 bytes (7x7, 1 byte per pixel)
-inline constexpr std::array<std::byte, 4704> FONT_DATA = {
+inline constexpr std::array<std::byte, 4704> FONT_ATLAS = {
     @FONT_DATA@
 };
 
 } // namespace cppel7
 
 
-#endif // CPPEL7_FONT_DATA_H
+#endif // CPPEL7_FONT_ATLAS_H
