@@ -8,33 +8,19 @@ target_link_libraries(${CPPEL7_EXECUTABLE_NAME}
         PRIVATE SDL3::SDL3-shared
 )
 
-# Generate font data header
+# Generation
+include(GenerateFromTemplate)
 set(GENERATE_OUTPUT_FOLDER "${CMAKE_SOURCE_DIR}/src/generated")
-set(FONT_DATA_GENERATOR_TOOL "${CMAKE_SOURCE_DIR}/tools/gen_font.py")
-set(FONT_DATA_FILE "${CMAKE_SOURCE_DIR}/data/font_atlas.txt")
-set(FONT_DATA_TEMPLATE "${CMAKE_SOURCE_DIR}/src/font_atlas.h.in")
-set(FONT_DATA_HEADER "${GENERATE_OUTPUT_FOLDER}/font_atlas.h")
 
-# Find Python Interpreter
-find_package(Python3 QUIET COMPONENTS Interpreter)
-if (NOT Python3_FOUND)
-    if (NOT EXISTS "${FONT_DATA_HEADER}")
-        message(FATAL_ERROR "Python3 is not available and '${FONT_DATA_HEADER}' does not exist.\n"
-                "Install Python 3 or set Python3_EXECUTABLE.\n")
-    else ()
-        message(WARNING "Python3 not found. '${FONT_DATA_HEADER}' will NOT be regenerated.\n")
-    endif ()
-else ()
-    add_custom_command(
-            OUTPUT "${FONT_DATA_HEADER}"
-            COMMAND ${Python_EXECUTABLE} "${FONT_DATA_GENERATOR_TOOL}" "${FONT_DATA_FILE}" "${FONT_DATA_TEMPLATE}" -o "${FONT_DATA_HEADER}"
-            DEPENDS "${FONT_DATA_GENERATOR_TOOL}" "${FONT_DATA_FILE}" "${FONT_DATA_TEMPLATE}"
-            COMMENT "Generating ${FONT_DATA_HEADER}..."
-    )
-    # Add generation of file as dependency
-    add_custom_target(generate_font DEPENDS ${FONT_DATA_HEADER})
-    add_dependencies(${CPPEL7_EXECUTABLE_NAME} generate_font)
-endif ()
+# Generate font atlas
+generate_from_template(
+        TARGET_NAME generate_font
+        GENERATOR_PATH "${CMAKE_SOURCE_DIR}/tools/gen_font.py"
+        INPUT_DATA_PATH "${CMAKE_SOURCE_DIR}/data/font_atlas.txt"
+        TEMPLATE_PATH "${CMAKE_SOURCE_DIR}/src/font_atlas.h.in"
+        OUTPUT_PATH "${GENERATE_OUTPUT_FOLDER}/font_atlas.h"
+        DEPENDENT_TARGET ${CPPEL7_EXECUTABLE_NAME}
+)
 
 # Include generated file in target
 target_include_directories(${CPPEL7_EXECUTABLE_NAME} PRIVATE "${GENERATE_OUTPUT_FOLDER}")
