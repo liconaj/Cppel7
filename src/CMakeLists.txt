@@ -1,39 +1,19 @@
 set(CPPEL7_EXECUTABLE_NAME cppel7)
 
 add_executable(${CPPEL7_EXECUTABLE_NAME}
-        main.cpp
+        cppel7.cpp
 )
+
+add_subdirectory(core)
+add_subdirectory(virtual_machine)
+add_subdirectory(engine)
+add_subdirectory(platform)
 
 target_link_libraries(${CPPEL7_EXECUTABLE_NAME}
-        PRIVATE SDL3::SDL3-shared
+        PRIVATE
+            Cppel7::Platform
+            SDL3::SDL3-shared
 )
-
-# Generation
-include(GenerateFromTemplate)
-set(GENERATE_OUTPUT_FOLDER "${CMAKE_SOURCE_DIR}/src/generated")
-
-# Generate font atlas
-generate_from_template(
-        TARGET_NAME generate_font
-        GENERATOR_PATH "${CMAKE_SOURCE_DIR}/tools/gen_font.py"
-        INPUT_DATA_PATH "${CMAKE_SOURCE_DIR}/data/font_atlas.txt"
-        TEMPLATE_PATH "${CMAKE_SOURCE_DIR}/src/font_atlas.h.in"
-        OUTPUT_PATH "${GENERATE_OUTPUT_FOLDER}/font_atlas.h"
-        DEPENDENT_TARGET ${CPPEL7_EXECUTABLE_NAME}
-)
-
-# Generate color palette
-generate_from_template(
-        TARGET_NAME generate_palette
-        GENERATOR_PATH "${CMAKE_SOURCE_DIR}/tools/gen_palette.py"
-        INPUT_DATA_PATH "${CMAKE_SOURCE_DIR}/data/color_palette.txt"
-        TEMPLATE_PATH "${CMAKE_SOURCE_DIR}/src/color_palette.h.in"
-        OUTPUT_PATH "${GENERATE_OUTPUT_FOLDER}/color_palette.h"
-        DEPENDENT_TARGET ${CPPEL7_EXECUTABLE_NAME}
-)
-
-# Include generated file in target
-target_include_directories(${CPPEL7_EXECUTABLE_NAME} PRIVATE "${GENERATE_OUTPUT_FOLDER}")
 
 # Copy SDL
 if (SDL_VENDORED)

@@ -24,7 +24,7 @@
 # 7: purple (#a98aff)
 169 138 255
 
-# 8: pink (#f9aaaf9)
+# 8: pink (#f9aaf9)
 249 170 175
 
 # 9: dark red (#ab3347)

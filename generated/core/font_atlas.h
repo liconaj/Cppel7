@@ -1,14 +1,15 @@
 // Auto-generated from font_atlas.txt - DO NOT EDIT THE DATA
 
-#ifndef CPPEL7_FONT_ATLAS_H
-#define CPPEL7_FONT_ATLAS_H
+#ifndef CPPEL7_DEFAULT_FONT_ATLAS_H
+#define CPPEL7_DEFAULT_FONT_ATLAS_H
 
 #include <array>
+#include <cstddef>
 
 namespace cppel7 {
 
 // 96 sprites x 49 bytes (7x7, 1 byte per pixel)
-inline constexpr std::array<std::byte, 4704> FONT_ATLAS = {
+inline constexpr std::array DEFAULT_FONT_ATLAS {
     // font_atlas.txt
     // <index> (<ASCII code>) <character>
     
@@ -878,4 +879,4 @@ inline constexpr std::array<std::byte, 4704> FONT_ATLAS = {
 } // namespace cppel7
 
 
-#endif // CPPEL7_FONT_ATLAS_H
+#endif // CPPEL7_DEFAULT_FONT_ATLAS_H
