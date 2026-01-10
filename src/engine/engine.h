@@ -5,6 +5,7 @@
 
 #include "core/config.h"
 #include "framebuffer.h"
+#include "virtual_machine/virtual_machine.h"
 
 namespace cppel7 {
 
@@ -24,8 +25,12 @@ public:
 private:
     Config m_config {};
     std::unique_ptr<FrameBuffer> m_frameBuffer;
+    std::unique_ptr<VirtualMachine> m_virtualMachine;
 
     bool m_quitRequested {false};
+
+    void uploadDefaultFontAtlas() const;
+    void uploadDefaultPalette() const;
 };
 
 } // namespace cppel7
