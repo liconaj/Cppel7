@@ -7,7 +7,6 @@ namespace cppel7 {
 AppState::AppState()
     : m_input(m_engine)
 {
-    m_timeStartFpsNs = SDL_GetTicksNS();
 }
 
 Engine& AppState::engine()
@@ -23,6 +22,11 @@ SdlVideo& AppState::video()
 SdlInput& AppState::input()
 {
     return m_input;
+}
+
+void AppState::startFpsTimer()
+{
+    m_timeStartFpsNs = SDL_GetTicksNS();
 }
 
 void AppState::adjustFps()

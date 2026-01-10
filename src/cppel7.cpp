@@ -31,6 +31,8 @@ SDL_AppResult SDL_AppInit(void** appstate, int, char**)
         return SDL_APP_FAILURE;
     }
 
+    state.startFpsTimer();
+
     return SDL_APP_CONTINUE;
 }
 SDL_AppResult SDL_AppIterate(void* appstate)

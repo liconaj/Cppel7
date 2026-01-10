@@ -17,6 +17,7 @@ public:
     SdlInput& input();
 
     void adjustFps();
+    void startFpsTimer();
 
 private:
     Engine m_engine {};
