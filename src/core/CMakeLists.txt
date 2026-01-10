@@ -34,7 +34,7 @@ generate_from_template(
 target_include_directories(${LIBRARY_NAME}
         INTERFACE
             "${CMAKE_CURRENT_SOURCE_DIR}/.."
-            "${GENERATE_OUTPUT_FOLDER}"
+            "${GENERATE_OUTPUT_FOLDER}/.."
 )
 
 target_compile_features(${LIBRARY_NAME} INTERFACE cxx_std_20)
