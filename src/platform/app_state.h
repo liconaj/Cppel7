@@ -23,6 +23,17 @@ private:
 
     std::uint64_t m_lastTickNs {};
     double m_timeAccumulator {};
+
+    void tick(double deltaSeconds);
+    void renderFrame();
+
+    std::uint64_t m_statsTimerNs {};
+    int m_stepCount {};
+    int m_frameCount {};
+
+    void initDebugStats(std::uint64_t currentTicksNs);
+    void updateDebugStats(std::uint64_t currentTicksNs);
+    void showDebugStats(double tps, double fps);
 };
 
 } // namespace cppel7

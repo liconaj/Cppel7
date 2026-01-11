@@ -9,9 +9,11 @@ namespace cppel7 {
 
 Engine::Engine()
 {
+    m_config.title = "Hello Cppel7";
     m_config.width = 12;
     m_config.height = 8;
     m_config.scale = 4;
+    m_config.debug = true;
 
     m_frameBuffer = std::make_unique<FrameBuffer>(m_config.width * CELL_SIZE,
                                                   m_config.height * CELL_SIZE);
