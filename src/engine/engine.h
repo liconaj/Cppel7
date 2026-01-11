@@ -4,8 +4,8 @@
 #include <memory>
 
 #include "core/config.h"
+#include "video/draw_context.h"
 #include "video/framebuffer.h"
-#include "video/screen.h"
 #include "video/screen_renderer.h"
 #include "virtual_machine/virtual_machine.h"
 
@@ -39,7 +39,7 @@ private:
     std::unique_ptr<FrameBuffer> m_frameBuffer;
     std::unique_ptr<ScreenRenderer> m_screenRenderer;
 
-    std::unique_ptr<Screen> m_screen;
+    std::unique_ptr<DrawContext> m_drawContext;
 
     bool m_quitRequested {false};
 

@@ -1,21 +1,22 @@
-#include "screen.h"
+#include "draw_context.h"
+#include "core/config.h"
 #include "core/constants.h"
 
 // ReSharper disable CppRedundantParentheses
 
 namespace cppel7 {
 
-Screen::Screen(VirtualMachine& virtualMachine, const Size width, const Size height)
-    : m_virtualMachine(virtualMachine), m_width(width), m_height(height)
+DrawContext::DrawContext(VirtualMachine& virtualMachine, const Config& config)
+    : m_virtualMachine(virtualMachine), m_width(config.width), m_height(config.height)
 {
 }
 
-void Screen::setColor(const ColorAttr color)
+void DrawContext::setColor(const ColorAttr color)
 {
     m_currentColor = color;
 }
 
-std::optional<Cell> Screen::get(const int x, const int y) const
+std::optional<Cell> DrawContext::get(const int x, const int y) const
 {
     const auto cellAddress = getCellAddress(x, y);
     if (cellAddress.has_value() == false) {
@@ -27,7 +28,7 @@ std::optional<Cell> Screen::get(const int x, const int y) const
     return Cell {.glyph = glyph, .colorAttr = colorAttr};
 }
 
-void Screen::put(const int x, const int y, const GlyphIndex glyph) const
+void DrawContext::put(const int x, const int y, const GlyphIndex glyph) const
 {
     const auto cellAddress = getCellAddress(x, y);
     if (cellAddress.has_value() == false) {
@@ -37,14 +38,15 @@ void Screen::put(const int x, const int y, const GlyphIndex glyph) const
     m_virtualMachine.poke(cellAddress.value() + 1, m_currentColor.packed);
 }
 
-void Screen::put(const int x, const int y, const std::span<GlyphIndex> glyphs) const
+void DrawContext::put(const int x, const int y, const std::span<GlyphIndex> glyphs) const
 {
     for (int i {}; i < glyphs.size(); ++i) {
         put(x + i, y, glyphs[i]);
     }
 }
 
-void Screen::fill(const int x, const int y, const int w, const int h, const GlyphIndex glyph) const
+void DrawContext::fill(const int x, const int y, const int w, const int h,
+                       const GlyphIndex glyph) const
 {
     for (int i {x}; i < w; ++i) {
         for (int j {y}; j < h; ++j) {
@@ -53,12 +55,12 @@ void Screen::fill(const int x, const int y, const int w, const int h, const Glyp
     }
 }
 
-bool Screen::checkCellPosition(const int x, const int y) const
+bool DrawContext::checkCellPosition(const int x, const int y) const
 {
     return x >= 0 && y >= 0 && x < m_width && y < m_height;
 }
 
-std::optional<Address> Screen::getCellAddress(const int x, const int y) const
+std::optional<Address> DrawContext::getCellAddress(const int x, const int y) const
 {
     if (checkCellPosition(x, y) == false) {
         return std::nullopt;
@@ -66,16 +68,6 @@ std::optional<Address> Screen::getCellAddress(const int x, const int y) const
     const Size cellIndex {x + (y * m_width)};
     Address cellAddress {ADDR_SCREEN_BUFFER_BASE + (cellIndex * SCREEN_BUFFER_BYTES_PER_CELL)};
     return cellAddress;
-}
-
-Size Screen::width() const
-{
-    return m_width;
-}
-
-Size Screen::height() const
-{
-    return m_height;
 }
 
 } // namespace cppel7

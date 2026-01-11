@@ -1,17 +1,18 @@
 #ifndef CPPEL7_SCREEN_H
 #define CPPEL7_SCREEN_H
 
+#include <optional>
+
+#include "core/config.h"
 #include "core/types.h"
 #include "virtual_machine/virtual_machine.h"
 
-#include <optional>
-
 namespace cppel7 {
 
-class Screen
+class DrawContext
 {
 public:
-    Screen(VirtualMachine& virtualMachine, Size width, Size height);
+    DrawContext(VirtualMachine& virtualMachine, const Config& config);
 
     void setColor(ColorAttr color);
 
@@ -22,12 +23,6 @@ public:
 
     [[nodiscard]]
     std::optional<Cell> get(int x, int y) const;
-
-    [[nodiscard]]
-    Size width() const;
-
-    [[nodiscard]]
-    Size height() const;
 
 private:
     VirtualMachine& m_virtualMachine;

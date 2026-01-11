@@ -4,8 +4,8 @@ add_library(${LIBRARY_NAME}
         STATIC
         framebuffer.h
         framebuffer.cpp
-        screen.h
-        screen.cpp
+        draw_context.h
+        draw_context.cpp
         video_memory_view.h
         video_memory_view.cpp
         screen_renderer.cpp

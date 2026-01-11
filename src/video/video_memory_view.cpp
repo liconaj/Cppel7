@@ -5,9 +5,8 @@
 
 namespace cppel7 {
 
-VideoMemoryView::VideoMemoryView(const VirtualMachine& virtualMachine, const Size screenWidth,
-                                 const Size screenHeight)
-    : m_virtualMachine(virtualMachine), m_screenWidth(screenWidth), m_screenHeight(screenHeight)
+VideoMemoryView::VideoMemoryView(const VirtualMachine& virtualMachine, const Config& config)
+    : m_virtualMachine(virtualMachine), m_screenWidth(config.width), m_screenHeight(config.height)
 {
 }
 

@@ -23,9 +23,8 @@ Engine::Engine()
     const Size memorySize {ADDR_SCREEN_BUFFER_BASE + screenBufferSize};
     m_virtualMachine = std::make_unique<VirtualMachine>(memorySize);
 
-    m_screen = std::make_unique<Screen>(*m_virtualMachine, m_config.width, m_config.height);
-    m_videoMemoryView = std::make_unique<VideoMemoryView>(*m_virtualMachine, m_config.width,
-                                                          m_config.height);
+    m_drawContext = std::make_unique<DrawContext>(*m_virtualMachine, m_config);
+    m_videoMemoryView = std::make_unique<VideoMemoryView>(*m_virtualMachine, m_config);
     m_screenRenderer = std::make_unique<ScreenRenderer>(*m_videoMemoryView);
 
     uploadDefaultPalette();
@@ -42,8 +41,8 @@ void Engine::step() const
         const auto bg {static_cast<Byte>((i + COLOR_OFFSET) % PALETTE_COLOR_COUNT)};
         const auto fg {static_cast<Byte>((i + COLOR_OFFSET + 2) % PALETTE_COLOR_COUNT)};
 
-        m_screen->setColor(ColorAttr {static_cast<Byte>(fg | (bg << 4))});
-        m_screen->put(x, y, static_cast<PaletteIndex>(i));
+        m_drawContext->setColor(ColorAttr {static_cast<Byte>(fg | (bg << 4))});
+        m_drawContext->put(x, y, static_cast<PaletteIndex>(i));
     }
 }
 

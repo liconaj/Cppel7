@@ -1,6 +1,7 @@
 #ifndef CPPEL7_VIDEO_MEMORY_VIEW_H
 #define CPPEL7_VIDEO_MEMORY_VIEW_H
 
+#include "core/config.h"
 #include "framebuffer.h"
 #include "virtual_machine/virtual_machine.h"
 
@@ -9,8 +10,7 @@ namespace cppel7 {
 class VideoMemoryView
 {
 public:
-    explicit VideoMemoryView(const VirtualMachine& virtualMachine, Size screenWidth,
-                             Size screenHeight);
+    explicit VideoMemoryView(const VirtualMachine& virtualMachine, const Config& config);
 
     [[nodiscard]]
     std::span<const Cell> cells() const;
