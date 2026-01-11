@@ -1,7 +1,6 @@
 #ifndef APP_STATE_H
 #define APP_STATE_H
 
-#include "SDL3/SDL.h"
 #include "sdl_input.h"
 #include "sdl_video.h"
 
@@ -20,14 +19,13 @@ public:
     void startFpsTimer();
 
 private:
-    Engine m_engine {};
+    Engine m_engine;
 
-    SdlVideo m_video {};
+    SdlVideo m_video;
     SdlInput m_input;
 
     std::uint64_t m_timeStartFpsNs {};
 };
-
 
 } // namespace cppel7
 
