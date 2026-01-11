@@ -33,7 +33,7 @@ def transform_data_prefix(prefix: str) -> str:
         values.append(value)
 
     r, g, b = values
-    return f"std::byte {{{b}}}, std::byte {{{g}}}, std::byte {{{r}}}, std::byte {{0}},"
+    return f"{b}, {g}, {r}, 0,"
 
 
 if __name__ == "__main__":

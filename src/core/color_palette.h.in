@@ -4,11 +4,16 @@
 #define CPPEL7_DEFAULT_PALETTE_H
 
 #include <array>
-#include <cstddef>
+#include <cstdint>
+
+#include "core/constants.h"
+#include "core/types.h"
 
 namespace cppel7 {
 
-inline constexpr std::array DEFAULT_PALETTE {
+inline constexpr Size PALETTE_SIZE {PALETTE_COLOR_COUNT * PALETTE_BYTES_PER_COLOR};
+
+inline constexpr std::array<Byte, PALETTE_SIZE> DEFAULT_PALETTE {
     @PALETTE_DATA@
 };
 

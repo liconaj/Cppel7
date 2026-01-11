@@ -1,39 +1,39 @@
-#include "virtual_machine.h"
-
 #include <algorithm>
+
+#include "virtual_machine.h"
 
 namespace cppel7 {
 
-VirtualMachine::VirtualMachine(const size_t size) : m_memory(size)
+VirtualMachine::VirtualMachine(const Size size) : m_memory(size)
 {
 }
 
-std::byte VirtualMachine::peek(const std::size_t address) const
+Byte VirtualMachine::peek(const Address address) const
 {
     return m_memory.at(address);
 }
 
-std::span<const std::byte> VirtualMachine::peek(const std::size_t address, const size_t n) const
+std::span<const Byte> VirtualMachine::peek(const Address address, const Size n) const
 {
     return {m_memory.data() + address, n};
 }
 
-void VirtualMachine::poke(const std::size_t address, const std::byte value)
+void VirtualMachine::poke(const Address address, const Byte value)
 {
     m_memory.at(address) = value;
 }
 
-void VirtualMachine::poke(const std::size_t address, std::span<const std::byte> values)
+void VirtualMachine::poke(const Address address, std::span<const Byte> values)
 {
     std::copy_n(values.begin(), values.size(), m_memory.begin() + address);
 }
 
-std::span<const std::byte> VirtualMachine::memory() const
+std::span<const Byte> VirtualMachine::memory() const
 {
     return m_memory;
 }
 
-const std::byte* VirtualMachine::data() const
+const Byte* VirtualMachine::data() const
 {
     return m_memory.data();
 }

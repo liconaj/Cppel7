@@ -28,8 +28,8 @@ void SdlVideo::initialize(const Config& config)
     m_logicalWidth = config.width * CELL_SIZE * LOGICAL_SIZE_SCALE;
     m_logicalHeight = config.height * CELL_SIZE * LOGICAL_SIZE_SCALE;
 
-    const int windowWidth {m_logicalWidth * config.scale};
-    const int windowHeight {m_logicalHeight * config.scale};
+    const int windowWidth {m_logicalWidth * static_cast<int>(config.scale)};
+    const int windowHeight {m_logicalHeight * static_cast<int>(config.scale)};
 
     m_window = SDL_CreateWindow(config.title.c_str(), windowWidth, windowHeight,
                                 SDL_WINDOW_RESIZABLE);

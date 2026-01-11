@@ -17,13 +17,13 @@ private:
     const Screen& m_screen;
     const VirtualMachine& m_virtualMachine;
 
-    void drawCell(FrameBuffer& frameBuffer, const Cell& cell, int cellX, int cellY) const;
+    void drawCell(FrameBuffer& frameBuffer, const Cell& cell, Size cellX, Size cellY) const;
 
     [[nodiscard]]
-    PixelColor getPaletteColor(int index) const;
+    PixelColor getPaletteColor(PaletteIndex index) const;
 
     [[nodiscard]]
-    bool isGlyphPixelSet(GlyphIndex glyph, int pixelIndex) const;
+    bool isGlyphPixelSet(GlyphIndex glyph, Size pixelIndex) const;
 };
 
 } // namespace cppel7

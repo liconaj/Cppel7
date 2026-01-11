@@ -3,14 +3,16 @@
 
 #include <string>
 
+#include "core/types.h"
+
 namespace cppel7 {
 
 struct Config
 {
     std::string title {"Cppel7 Game"};
-    int width {24};
-    int height {16};
-    int scale {4};
+    Size width {24};
+    Size height {16};
+    Size scale {4};
     bool debug {false};
 };
 

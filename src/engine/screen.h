@@ -11,7 +11,7 @@ namespace cppel7 {
 class Screen
 {
 public:
-    Screen(VirtualMachine& virtualMachine, int width, int height);
+    Screen(VirtualMachine& virtualMachine, Size width, Size height);
 
     void setColor(ColorAttr color);
 
@@ -24,13 +24,13 @@ public:
     std::optional<Cell> get(int x, int y) const;
 
     [[nodiscard]]
-    int width() const;
+    Size width() const;
 
     [[nodiscard]]
-    int height() const;
+    Size height() const;
 
     [[nodiscard]]
-    int size() const;
+    Size size() const;
 
     [[nodiscard]]
     std::span<const Cell> cells() const;
@@ -40,8 +40,8 @@ public:
 
 private:
     VirtualMachine& m_virtualMachine;
-    const int m_width;
-    const int m_height;
+    const Size m_width;
+    const Size m_height;
 
     ColorAttr m_currentColor {};
 

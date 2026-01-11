@@ -1,30 +1,34 @@
 #ifndef CPPEL7_CELL_H
 #define CPPEL7_CELL_H
 
-#include <cstddef>
+#include <cstdint>
 
 namespace cppel7 {
 
-using Address = int;
+using Byte = std::uint8_t;
 
-using GlyphIndex = std::byte;
+using Address = std::uint32_t;
 
-using PaletteIndex = int;
+using GlyphIndex = std::uint8_t;
+
+using PaletteIndex = std::uint8_t;
+
+using Size = std::uint32_t;
 
 struct ColorAttr
 {
-    std::byte value;
+    Byte packed;
 
     [[nodiscard]]
     PaletteIndex foreground() const noexcept
     {
-        return static_cast<PaletteIndex>(value & std::byte{0x0F});
+        return static_cast<PaletteIndex>(packed & 0x0F);
     }
 
     [[nodiscard]]
     PaletteIndex background() const noexcept
     {
-        return static_cast<PaletteIndex>((value & std::byte{0xF0}) >> 4);
+        return static_cast<PaletteIndex>((packed & 0xF0) >> 4);
     }
 };
 

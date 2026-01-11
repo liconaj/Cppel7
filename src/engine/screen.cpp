@@ -5,7 +5,7 @@
 
 namespace cppel7 {
 
-Screen::Screen(VirtualMachine& virtualMachine, const int width, const int height)
+Screen::Screen(VirtualMachine& virtualMachine, const Size width, const Size height)
     : m_virtualMachine(virtualMachine), m_width(width), m_height(height)
 {
 }
@@ -21,10 +21,10 @@ std::optional<Cell> Screen::get(const int x, const int y) const
     if (cellAddress.has_value() == false) {
         return std::nullopt;
     }
-    const GlyphIndex glyph { m_virtualMachine.peek(cellAddress.value())};
+    const GlyphIndex glyph {m_virtualMachine.peek(cellAddress.value())};
     const ColorAttr colorAttr {m_virtualMachine.peek(cellAddress.value() + 1)};
 
-    return Cell { .glyph=glyph, .colorAttr=colorAttr };
+    return Cell {.glyph = glyph, .colorAttr = colorAttr};
 }
 
 void Screen::put(const int x, const int y, const GlyphIndex glyph) const
@@ -34,7 +34,7 @@ void Screen::put(const int x, const int y, const GlyphIndex glyph) const
         return;
     }
     m_virtualMachine.poke(cellAddress.value(), glyph);
-    m_virtualMachine.poke(cellAddress.value() + 1, m_currentColor.value);
+    m_virtualMachine.poke(cellAddress.value() + 1, m_currentColor.packed);
 }
 
 void Screen::put(const int x, const int y, const std::span<GlyphIndex> glyphs) const
@@ -59,12 +59,12 @@ std::span<const Cell> Screen::cells() const
     static_assert(std::is_standard_layout_v<Cell>);
     static_assert(std::is_trivially_copyable_v<Cell>);
 
-    const std::size_t cellCount {static_cast<std::size_t>(m_width * m_height)};
-    const std::byte* base {m_virtualMachine.memory().data() + ADDR_SCREEN_BUFFER_BASE};
+    const Size cellCount {m_width * m_height};
+    const Byte* base {m_virtualMachine.memory().data() + ADDR_SCREEN_BUFFER_BASE};
     const Cell* cells {std::launder(reinterpret_cast<const Cell*>(base))};
 
     // ReSharper disable once CppDFALocalValueEscapesFunction
-    return std::span{cells, cellCount};
+    return std::span {cells, cellCount};
 }
 
 bool Screen::checkCellPosition(const int x, const int y) const
@@ -77,7 +77,7 @@ std::optional<Address> Screen::getCellAddress(const int x, const int y) const
     if (checkCellPosition(x, y) == false) {
         return std::nullopt;
     }
-    const int cellIndex {x + (y * m_width)};
+    const Size cellIndex {x + (y * m_width)};
     Address cellAddress {ADDR_SCREEN_BUFFER_BASE + (cellIndex * SCREEN_BUFFER_BYTES_PER_CELL)};
     return cellAddress;
 }
@@ -87,17 +87,17 @@ const VirtualMachine& Screen::virtualMachine() const
     return m_virtualMachine;
 }
 
-int Screen::width() const
+Size Screen::width() const
 {
     return m_width;
 }
 
-int Screen::height() const
+Size Screen::height() const
 {
     return m_height;
 }
 
-int Screen::size() const
+Size Screen::size() const
 {
     return m_width * m_height;
 }

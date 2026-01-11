@@ -4,12 +4,17 @@
 #define CPPEL7_DEFAULT_FONT_ATLAS_H
 
 #include <array>
-#include <cstddef>
+#include <cstdint>
+
+#include "core/constants.h"
+#include "core/types.h"
 
 namespace cppel7 {
 
+inline constexpr Size FONT_ATLAS_SIZE {FONT_ATLAS_GLYPH_COUNT * FONT_ATLAS_BYTES_PER_GLYPH};
+
 // 96 sprites x 49 bytes (7x7, 1 byte per pixel)
-inline constexpr std::array DEFAULT_FONT_ATLAS {
+inline constexpr std::array<Byte, FONT_ATLAS_SIZE> DEFAULT_FONT_ATLAS {
     @FONT_DATA@
 };
 

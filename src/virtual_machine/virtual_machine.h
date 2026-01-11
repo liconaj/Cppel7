@@ -1,35 +1,36 @@
 #ifndef CPPEL7_VIRTUAL_MACHINE_H
 #define CPPEL7_VIRTUAL_MACHINE_H
 
-#include <cstddef>
-#include <vector>
 #include <span>
+#include <vector>
+
+#include "core/types.h"
 
 namespace cppel7 {
 
 class VirtualMachine
 {
 public:
-    explicit VirtualMachine(size_t size);
+    explicit VirtualMachine(Size size);
 
     [[nodiscard]]
-    std::byte peek(std::size_t address) const;
+    Byte peek(Address address) const;
 
     [[nodiscard]]
-    std::span<const std::byte> peek(std::size_t address, size_t n) const;
+    std::span<const Byte> peek(Address address, Size n) const;
 
-    void poke(std::size_t address, std::byte value);
+    void poke(Address address, Byte value);
 
-    void poke(std::size_t address, std::span<const std::byte> values);
-
-    [[nodiscard]]
-    std::span<const std::byte> memory() const;
+    void poke(Address address, std::span<const Byte> values);
 
     [[nodiscard]]
-    const std::byte* data() const;
+    std::span<const Byte> memory() const;
+
+    [[nodiscard]]
+    const Byte* data() const;
 
 private:
-    std::vector<std::byte> m_memory;
+    std::vector<Byte> m_memory;
 };
 
 } // namespace cppel7

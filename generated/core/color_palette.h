@@ -4,60 +4,65 @@
 #define CPPEL7_DEFAULT_PALETTE_H
 
 #include <array>
-#include <cstddef>
+#include <cstdint>
+
+#include "core/constants.h"
+#include "core/types.h"
 
 namespace cppel7 {
 
-inline constexpr std::array DEFAULT_PALETTE {
+inline constexpr Size PALETTE_SIZE {PALETTE_COLOR_COUNT * PALETTE_BYTES_PER_COLOR};
+
+inline constexpr std::array<Byte, PALETTE_SIZE> DEFAULT_PALETTE {
     // Default cel7 palette
     
     // 0: black (#0b0c0d)
-    std::byte {13}, std::byte {12}, std::byte {11}, std::byte {0},
+    13, 12, 11, 0,
     
     // 1: white (#f7f7e6)
-    std::byte {230}, std::byte {247}, std::byte {247}, std::byte {0},
+    230, 247, 247, 0,
     
     // 2: red (#f71467)
-    std::byte {103}, std::byte {20}, std::byte {247}, std::byte {0},
+    103, 20, 247, 0,
     
     // 3: orange (#fd971f)
-    std::byte {31}, std::byte {151}, std::byte {253}, std::byte {0},
+    31, 151, 253, 0,
     
     // 4: yellow (#e6d415)
-    std::byte {21}, std::byte {212}, std::byte {230}, std::byte {0},
+    21, 212, 230, 0,
     
     // 5: lime (#a0e01f)
-    std::byte {31}, std::byte {224}, std::byte {160}, std::byte {0},
+    31, 224, 160, 0,
     
     // 6: blue (#46bbff)
-    std::byte {255}, std::byte {187}, std::byte {70}, std::byte {0},
+    255, 187, 70, 0,
     
     // 7: purple (#a98aff)
-    std::byte {255}, std::byte {138}, std::byte {169}, std::byte {0},
+    255, 138, 169, 0,
     
     // 8: pink (#f9aaf9)
-    std::byte {175}, std::byte {170}, std::byte {249}, std::byte {0},
+    175, 170, 249, 0,
     
     // 9: dark red (#ab3347)
-    std::byte {71}, std::byte {51}, std::byte {171}, std::byte {0},
+    71, 51, 171, 0,
     
     // 10: dark green (#37946e)
-    std::byte {110}, std::byte {148}, std::byte {55}, std::byte {0},
+    110, 148, 55, 0,
     
     // 11: dark blue (#2a4669)
-    std::byte {105}, std::byte {70}, std::byte {42}, std::byte {0},
+    105, 70, 42, 0,
     
     // 12: gray (#7c8d99)
-    std::byte {153}, std::byte {141}, std::byte {124}, std::byte {0},
+    153, 141, 124, 0,
     
     // 13: beige (#c2beae)
-    std::byte {174}, std::byte {190}, std::byte {194}, std::byte {0},
+    174, 190, 194, 0,
     
     // 14: dark beige (#75715e)
-    std::byte {94}, std::byte {113}, std::byte {117}, std::byte {0},
+    94, 113, 117, 0,
     
     // 15: brown (#3e3d32)
-    std::byte {50}, std::byte {61}, std::byte {62}, std::byte {0},
+    50, 61, 62, 0,
 };
 
 } // namespace cppel7

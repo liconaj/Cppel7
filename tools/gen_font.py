@@ -16,7 +16,7 @@ COMMENT_LINE_PATTERN = re.compile(r"^(;+)(.*)$")
 
 
 def _map_data(value: int) -> str:
-    return f"std::byte {{{value}}}"
+    return f"{value}"
 
 
 def transform_data_prefix(prefix: str) -> str:
