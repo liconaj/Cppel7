@@ -23,8 +23,10 @@ SdlVideo::~SdlVideo()
 
 void SdlVideo::initialize(const Config& config)
 {
-    m_logicalWidth = config.width * CELL_SIZE;
-    m_logicalHeight = config.height * CELL_SIZE;
+    constexpr int LOGICAL_SIZE_SCALE {2};
+
+    m_logicalWidth = config.width * CELL_SIZE * LOGICAL_SIZE_SCALE;
+    m_logicalHeight = config.height * CELL_SIZE * LOGICAL_SIZE_SCALE;
 
     const int windowWidth {m_logicalWidth * config.scale};
     const int windowHeight {m_logicalHeight * config.scale};
@@ -47,7 +49,8 @@ void SdlVideo::initialize(const Config& config)
     SDL_SetDefaultTextureScaleMode(m_renderer, SDL_SCALEMODE_PIXELART);
 
     m_texture = SDL_CreateTexture(m_renderer, SDL_PIXELFORMAT_BGRX32, SDL_TEXTUREACCESS_STREAMING,
-                                  m_logicalWidth, m_logicalHeight);
+                                  m_logicalWidth / LOGICAL_SIZE_SCALE,
+                                  m_logicalHeight / LOGICAL_SIZE_SCALE);
     if (m_texture == nullptr) {
         throw std::runtime_error(SDL_GetError());
     }

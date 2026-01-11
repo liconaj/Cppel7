@@ -10,9 +10,10 @@ Engine::Engine()
 {
     m_config.width = 12;
     m_config.height = 8;
-    m_config.scale = 8;
+    m_config.scale = 2;
 
-    m_frameBuffer = std::make_unique<FrameBuffer>(m_config.width * CELL_SIZE, m_config.height * CELL_SIZE);
+    m_frameBuffer = std::make_unique<FrameBuffer>(m_config.width * CELL_SIZE,
+                                                  m_config.height * CELL_SIZE);
 
     const int cells {m_config.width * m_config.height};
     const int screenBufferSize {cells * SCREEN_BUFFER_BYTES_PER_CELL};
@@ -36,8 +37,8 @@ void Engine::step() const
         const auto bg {static_cast<std::byte>((i + COLOR_OFFSET) % PALETTE_COLOR_COUNT)};
         const auto fg {static_cast<std::byte>((i + COLOR_OFFSET + 2) % PALETTE_COLOR_COUNT)};
 
-        m_screen->setColor(ColorAttr{fg | (bg << 4)});
-        m_screen->put(x, y, GlyphIndex{static_cast<std::byte>(i)});
+        m_screen->setColor(ColorAttr {fg | (bg << 4)});
+        m_screen->put(x, y, GlyphIndex {static_cast<std::byte>(i)});
     }
 }
 
