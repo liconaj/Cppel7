@@ -17,6 +17,8 @@ public:
     void initialize(const Config& config);
     void present(const FrameBuffer& frameBuffer) const;
 
+    void updateWindowTitle(const std::string& title) const;
+
 private:
     SDL_Window* m_window;
     SDL_Renderer* m_renderer;

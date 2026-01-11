@@ -69,4 +69,9 @@ void SdlVideo::present(const FrameBuffer& frameBuffer) const
     SDL_RenderPresent(m_renderer);
 }
 
+void SdlVideo::updateWindowTitle(const std::string& title) const
+{
+    SDL_SetWindowTitle(m_window, title.c_str());
+}
+
 } // namespace cppel7
