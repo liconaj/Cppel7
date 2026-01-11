@@ -4,9 +4,9 @@
 #include <memory>
 
 #include "core/config.h"
-#include "framebuffer.h"
-#include "screen.h"
-#include "screen_renderer.h"
+#include "video/framebuffer.h"
+#include "video/screen.h"
+#include "video/screen_renderer.h"
 #include "virtual_machine/virtual_machine.h"
 
 namespace cppel7 {
@@ -34,10 +34,12 @@ public:
 
 private:
     Config m_config {};
-    std::unique_ptr<FrameBuffer> m_frameBuffer;
     std::unique_ptr<VirtualMachine> m_virtualMachine;
-    std::unique_ptr<Screen> m_screen;
+    std::unique_ptr<VideoMemoryView> m_videoMemoryView;
+    std::unique_ptr<FrameBuffer> m_frameBuffer;
     std::unique_ptr<ScreenRenderer> m_screenRenderer;
+
+    std::unique_ptr<Screen> m_screen;
 
     bool m_quitRequested {false};
 

@@ -53,20 +53,6 @@ void Screen::fill(const int x, const int y, const int w, const int h, const Glyp
     }
 }
 
-std::span<const Cell> Screen::cells() const
-{
-    static_assert(sizeof(Cell) == 2);
-    static_assert(std::is_standard_layout_v<Cell>);
-    static_assert(std::is_trivially_copyable_v<Cell>);
-
-    const Size cellCount {m_width * m_height};
-    const Byte* base {m_virtualMachine.memory().data() + ADDR_SCREEN_BUFFER_BASE};
-    const Cell* cells {std::launder(reinterpret_cast<const Cell*>(base))};
-
-    // ReSharper disable once CppDFALocalValueEscapesFunction
-    return std::span {cells, cellCount};
-}
-
 bool Screen::checkCellPosition(const int x, const int y) const
 {
     return x >= 0 && y >= 0 && x < m_width && y < m_height;
@@ -82,11 +68,6 @@ std::optional<Address> Screen::getCellAddress(const int x, const int y) const
     return cellAddress;
 }
 
-const VirtualMachine& Screen::virtualMachine() const
-{
-    return m_virtualMachine;
-}
-
 Size Screen::width() const
 {
     return m_width;
@@ -95,11 +76,6 @@ Size Screen::width() const
 Size Screen::height() const
 {
     return m_height;
-}
-
-Size Screen::size() const
-{
-    return m_width * m_height;
 }
 
 } // namespace cppel7

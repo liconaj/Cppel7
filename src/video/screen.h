@@ -29,15 +29,6 @@ public:
     [[nodiscard]]
     Size height() const;
 
-    [[nodiscard]]
-    Size size() const;
-
-    [[nodiscard]]
-    std::span<const Cell> cells() const;
-
-    [[nodiscard]]
-    const VirtualMachine& virtualMachine() const;
-
 private:
     VirtualMachine& m_virtualMachine;
     const Size m_width;

@@ -3,8 +3,8 @@
 
 #include <SDL3/SDL.h>
 
+#include "../video/framebuffer.h"
 #include "core/config.h"
-#include "engine/framebuffer.h"
 
 namespace cppel7 {
 

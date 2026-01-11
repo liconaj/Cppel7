@@ -2,28 +2,21 @@
 #define CPPEL7_SCREEN_RENDERER_H
 
 #include "framebuffer.h"
-#include "screen.h"
+#include "video_memory_view.h"
 
 namespace cppel7 {
 
 class ScreenRenderer
 {
 public:
-    explicit ScreenRenderer(const Screen& screen);
+    explicit ScreenRenderer(const VideoMemoryView& videoMemoryView);
 
     void render(FrameBuffer& frameBuffer) const;
 
 private:
-    const Screen& m_screen;
-    const VirtualMachine& m_virtualMachine;
+    const VideoMemoryView& m_videoMemoryView;
 
     void drawCell(FrameBuffer& frameBuffer, const Cell& cell, Size cellX, Size cellY) const;
-
-    [[nodiscard]]
-    PixelColor getPaletteColor(PaletteIndex index) const;
-
-    [[nodiscard]]
-    bool isGlyphPixelSet(GlyphIndex glyph, Size pixelIndex) const;
 };
 
 } // namespace cppel7

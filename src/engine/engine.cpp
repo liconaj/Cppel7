@@ -24,7 +24,9 @@ Engine::Engine()
     m_virtualMachine = std::make_unique<VirtualMachine>(memorySize);
 
     m_screen = std::make_unique<Screen>(*m_virtualMachine, m_config.width, m_config.height);
-    m_screenRenderer = std::make_unique<ScreenRenderer>(*m_screen);
+    m_videoMemoryView = std::make_unique<VideoMemoryView>(*m_virtualMachine, m_config.width,
+                                                          m_config.height);
+    m_screenRenderer = std::make_unique<ScreenRenderer>(*m_videoMemoryView);
 
     uploadDefaultPalette();
     uploadDefaultFontAtlas();

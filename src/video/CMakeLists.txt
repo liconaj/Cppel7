@@ -1,17 +1,22 @@
-set(LIBRARY_NAME cppel7_engine)
+set(LIBRARY_NAME cppel7_video)
 
 add_library(${LIBRARY_NAME}
         STATIC
-        engine.h
-        engine.cpp
+        framebuffer.h
+        framebuffer.cpp
+        screen.h
+        screen.cpp
+        video_memory_view.h
+        video_memory_view.cpp
+        screen_renderer.cpp
+        screen_renderer.h
 )
-add_library(Cppel7::Engine ALIAS ${LIBRARY_NAME})
+add_library(Cppel7::Video ALIAS ${LIBRARY_NAME})
 
 target_link_libraries(${LIBRARY_NAME}
         PRIVATE
         Cppel7::Core
         Cppel7::VirtualMachine
-        Cppel7::Video
 )
 
 target_include_directories(${LIBRARY_NAME}

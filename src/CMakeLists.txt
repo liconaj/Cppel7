@@ -6,13 +6,14 @@ add_executable(${CPPEL7_EXECUTABLE_NAME}
 
 add_subdirectory(core)
 add_subdirectory(virtual_machine)
+add_subdirectory(video)
 add_subdirectory(engine)
 add_subdirectory(platform)
 
 target_link_libraries(${CPPEL7_EXECUTABLE_NAME}
         PRIVATE
-            Cppel7::Platform
-            SDL3::SDL3-shared
+        Cppel7::Platform
+        SDL3::SDL3-shared
 )
 
 # Copy SDL
