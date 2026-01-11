@@ -11,12 +11,9 @@ class AppState
 public:
     AppState();
 
-    Engine& engine();
-    SdlVideo& video();
-    SdlInput& input();
-
-    void adjustFps();
-    void startFpsTimer();
+    SDL_AppResult onInit();
+    SDL_AppResult onIterate();
+    SDL_AppResult onEvent(SDL_Event const& event) const;
 
 private:
     Engine m_engine;
@@ -24,7 +21,8 @@ private:
     SdlVideo m_video;
     SdlInput m_input;
 
-    std::uint64_t m_timeStartFpsNs {};
+    std::uint64_t m_lastTickNs {};
+    double m_timeAccumulator {};
 };
 
 } // namespace cppel7

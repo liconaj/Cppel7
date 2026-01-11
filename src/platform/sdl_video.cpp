@@ -55,7 +55,7 @@ void SdlVideo::initialize(const Config& config)
         throw std::runtime_error(SDL_GetError());
     }
 
-    SDL_SetHint(SDL_HINT_MAIN_CALLBACK_RATE, std::to_string(FPS).c_str());
+    SDL_SetHint(SDL_HINT_MAIN_CALLBACK_RATE, std::to_string(TPS).c_str());
 }
 
 void SdlVideo::present(const FrameBuffer& frameBuffer) const

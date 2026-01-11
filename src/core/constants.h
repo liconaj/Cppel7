@@ -5,7 +5,7 @@
 
 namespace cppel7 {
 
-inline constexpr int FPS {30};
+inline constexpr int TPS {30};
 inline constexpr Size CELL_SIZE {7};
 
 inline constexpr std::uint32_t PALETTE_COLOR_COUNT {16};
