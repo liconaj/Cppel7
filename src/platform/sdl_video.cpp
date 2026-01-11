@@ -57,17 +57,8 @@ void SdlVideo::initialize(const Config& config)
 
 void SdlVideo::present(const FrameBuffer& frameBuffer) const
 {
-    void* pixels {nullptr};
-    int pitch {0};
-
-    if (SDL_LockTexture(m_texture, nullptr, &pixels, &pitch) == false) {
-        return;
-    }
-
-    const std::span<const PixelColor> src = frameBuffer.pixels();
-    std::memcpy(pixels, src.data(), src.size_bytes());
-
-    SDL_UnlockTexture(m_texture);
+    SDL_UpdateTexture(m_texture, nullptr, frameBuffer.data(),
+                      frameBuffer.width() * sizeof(PixelColor));
 
     SDL_SetRenderDrawColor(m_renderer, 20, 20, 20, SDL_ALPHA_OPAQUE);
     SDL_RenderClear(m_renderer);
