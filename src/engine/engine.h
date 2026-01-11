@@ -5,6 +5,8 @@
 
 #include "core/config.h"
 #include "framebuffer.h"
+#include "screen.h"
+#include "screen_renderer.h"
 #include "virtual_machine/virtual_machine.h"
 
 namespace cppel7 {
@@ -17,15 +19,25 @@ public:
     const Config& config();
 
     void requestQuit();
+
+    void step() const;
+
+    void render() const;
+
+    [[nodiscard]]
     bool quitRequested() const;
 
     FrameBuffer& frameBuffer();
+
+    [[nodiscard]]
     const FrameBuffer& frameBuffer() const;
 
 private:
     Config m_config {};
     std::unique_ptr<FrameBuffer> m_frameBuffer;
     std::unique_ptr<VirtualMachine> m_virtualMachine;
+    std::unique_ptr<Screen> m_screen;
+    std::unique_ptr<ScreenRenderer> m_screenRenderer;
 
     bool m_quitRequested {false};
 

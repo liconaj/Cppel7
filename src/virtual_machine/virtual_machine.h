@@ -22,6 +22,12 @@ public:
 
     void poke(std::size_t address, std::span<const std::byte> values);
 
+    [[nodiscard]]
+    std::span<const std::byte> memory() const;
+
+    [[nodiscard]]
+    const std::byte* data() const;
+
 private:
     std::vector<std::byte> m_memory;
 };

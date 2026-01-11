@@ -5,26 +5,35 @@
 
 namespace cppel7 {
 
-using Pixel = std::uint32_t;
+using PixelColor = std::uint32_t;
 
 class FrameBuffer
 {
 public:
     explicit FrameBuffer(std::size_t width, std::size_t height);
 
+    void setPixel(int x, int y, PixelColor pixel);
+
+    [[nodiscard]]
     std::size_t width() const;
+
+    [[nodiscard]]
     std::size_t height() const;
 
-    const Pixel* data() const;
+    [[nodiscard]]
+    const PixelColor* data() const;
 
-    std::span<Pixel> pixels();
-    std::span<const Pixel> pixels() const;
+    [[nodiscard]]
+    std::span<PixelColor> pixels();
+
+    [[nodiscard]]
+    std::span<const PixelColor> pixels() const;
 
 private:
     const std::size_t m_width;
     const std::size_t m_height;
 
-    std::vector<Pixel> m_pixels;
+    std::vector<PixelColor> m_pixels;
 };
 
 } // namespace cppel7

@@ -6,6 +6,10 @@ add_library(${LIBRARY_NAME}
             framebuffer.cpp
             engine.h
             engine.cpp
+            screen.h
+            screen.cpp
+            screen_renderer.cpp
+            screen_renderer.h
 )
 add_library(Cppel7::Engine ALIAS ${LIBRARY_NAME})
 

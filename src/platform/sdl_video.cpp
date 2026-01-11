@@ -1,6 +1,8 @@
 #include "core/constants.h"
 #include "sdl_video.h"
 
+#include <assert.h>
+
 namespace cppel7 {
 
 SdlVideo::SdlVideo() = default;
@@ -39,6 +41,7 @@ void SdlVideo::initialize(const Config& config)
 
     // Make the renderer content scaled up by integer multiples to fit the output resolution
     SDL_SetRenderLogicalPresentation(m_renderer, m_logicalWidth, m_logicalHeight, SDL_LOGICAL_PRESENTATION_INTEGER_SCALE);
+    SDL_SetDefaultTextureScaleMode(m_renderer, SDL_SCALEMODE_PIXELART);
 
     m_texture = SDL_CreateTexture(m_renderer, SDL_PIXELFORMAT_BGRX32, SDL_TEXTUREACCESS_STREAMING, m_logicalWidth, m_logicalHeight);
     if (m_texture == nullptr) {
@@ -57,12 +60,12 @@ void SdlVideo::present(const FrameBuffer& frameBuffer) const
         return;
     }
 
-    const std::span<const Pixel> src = frameBuffer.pixels();
+    const std::span<const PixelColor> src = frameBuffer.pixels();
     std::memcpy(pixels, src.data(), src.size_bytes());
 
     SDL_UnlockTexture(m_texture);
 
-    SDL_SetRenderDrawColor(m_renderer, 15, 15, 15, SDL_ALPHA_OPAQUE);
+    SDL_SetRenderDrawColor(m_renderer, 20, 20, 20, SDL_ALPHA_OPAQUE);
     SDL_RenderClear(m_renderer);
     SDL_RenderTexture(m_renderer, m_texture, nullptr, nullptr);
     SDL_RenderPresent(m_renderer);

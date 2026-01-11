@@ -3,6 +3,7 @@ set(LIBRARY_NAME cppel7_core)
 add_library(${LIBRARY_NAME} INTERFACE
         constants.h
         config.h
+        types.h
 )
 
 add_library(Cppel7::Core ALIAS ${LIBRARY_NAME})

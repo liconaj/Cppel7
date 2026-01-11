@@ -8,15 +8,42 @@ namespace cppel7 {
 
 Engine::Engine()
 {
-    m_frameBuffer = std::make_unique<FrameBuffer>(m_config.width, m_config.height);
+    m_config.width = 12;
+    m_config.height = 8;
+    m_config.scale = 8;
+
+    m_frameBuffer = std::make_unique<FrameBuffer>(m_config.width * CELL_SIZE, m_config.height * CELL_SIZE);
 
     const int cells {m_config.width * m_config.height};
     const int screenBufferSize {cells * SCREEN_BUFFER_BYTES_PER_CELL};
-    const int memorySize {ADDR_FIXED_MEMORY_END + screenBufferSize};
+    const int memorySize {ADDR_SCREEN_BUFFER_BASE + screenBufferSize};
     m_virtualMachine = std::make_unique<VirtualMachine>(memorySize);
+
+    m_screen = std::make_unique<Screen>(*m_virtualMachine, m_config.width, m_config.height);
+    m_screenRenderer = std::make_unique<ScreenRenderer>(*m_screen);
 
     uploadDefaultPalette();
     uploadDefaultFontAtlas();
+}
+
+void Engine::step() const
+{
+    for (int i {}; i < FONT_ATLAS_GLYPH_COUNT; ++i) {
+        const int x {i % m_config.width};
+        const int y {i / m_config.width};
+
+        constexpr int COLOR_OFFSET {2};
+        const auto bg {static_cast<std::byte>((i + COLOR_OFFSET) % PALETTE_COLOR_COUNT)};
+        const auto fg {static_cast<std::byte>((i + COLOR_OFFSET + 2) % PALETTE_COLOR_COUNT)};
+
+        m_screen->setColor(ColorAttr{fg | (bg << 4)});
+        m_screen->put(x, y, GlyphIndex{static_cast<std::byte>(i)});
+    }
+}
+
+void Engine::render() const
+{
+    m_screenRenderer->render(*m_frameBuffer);
 }
 
 const Config& Engine::config()

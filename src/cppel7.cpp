@@ -39,6 +39,8 @@ SDL_AppResult SDL_AppIterate(void* appstate)
 {
     auto& state {*static_cast<cppel7::AppState*>(appstate)};
 
+    state.engine().step();
+    state.engine().render();
     state.video().present(state.engine().frameBuffer());
     state.adjustFps();
 

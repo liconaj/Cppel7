@@ -9,11 +9,11 @@ inline constexpr int CELL_SIZE {7};
 inline constexpr int PALETTE_COLOR_COUNT {16};
 inline constexpr int PALETTE_BYTES_PER_COLOR {4};
 
+inline constexpr int FONT_ATLAS_ASCII_OFFSET {32};
 inline constexpr int FONT_ATLAS_GLYPH_COUNT {96};
 inline constexpr int FONT_GLYPH_WIDTH {CELL_SIZE};
 inline constexpr int FONT_GLYPH_HEIGHT {CELL_SIZE};
-
-inline constexpr int FONT_GLYPH_SPACING {CELL_SIZE};
+inline constexpr int FONT_ATLAS_BYTES_PER_GLYPH {FONT_GLYPH_WIDTH * FONT_GLYPH_HEIGHT};
 
 inline constexpr int SCREEN_BUFFER_BYTES_PER_CELL {2};
 

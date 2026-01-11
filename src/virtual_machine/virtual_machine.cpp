@@ -26,4 +26,13 @@ void VirtualMachine::poke(const std::size_t address, std::span<const std::byte> 
     std::copy_n(values.begin(), values.size(), m_memory.begin() + address);
 }
 
+std::span<const std::byte> VirtualMachine::memory() const
+{
+    return m_memory;
+}
+
+const std::byte* VirtualMachine::data() const
+{
+    return m_memory.data();
+}
 } // namespace cppel7
