@@ -37,6 +37,8 @@ inline constexpr std::array DEFAULT_FONT_ATLAS {
     std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0},
     std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0},
     std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0},
+    std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0},
+    std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0},
     
     // 3 (35) #
     std::byte {0}, std::byte {1}, std::byte {1}, std::byte {0}, std::byte {1}, std::byte {0}, std::byte {0},
@@ -45,6 +47,7 @@ inline constexpr std::array DEFAULT_FONT_ATLAS {
     std::byte {1}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {0},
     std::byte {1}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {0},
     std::byte {0}, std::byte {1}, std::byte {1}, std::byte {0}, std::byte {1}, std::byte {0}, std::byte {0},
+    std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0},
     
     // 4 (36) $
     std::byte {0}, std::byte {0}, std::byte {1}, std::byte {1}, std::byte {0}, std::byte {0}, std::byte {0},
@@ -62,14 +65,16 @@ inline constexpr std::array DEFAULT_FONT_ATLAS {
     std::byte {0}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {0}, std::byte {0}, std::byte {0},
     std::byte {1}, std::byte {1}, std::byte {1}, std::byte {0}, std::byte {1}, std::byte {1}, std::byte {0},
     std::byte {1}, std::byte {1}, std::byte {0}, std::byte {0}, std::byte {1}, std::byte {1}, std::byte {0},
+    std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0},
     
     // 6 (38) &
     std::byte {0}, std::byte {1}, std::byte {1}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0},
     std::byte {1}, std::byte {1}, std::byte {0}, std::byte {1}, std::byte {0}, std::byte {0}, std::byte {0},
-    std::byte {0}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {0},
-    std::byte {1}, std::byte {1}, std::byte {0}, std::byte {0}, std::byte {1}, std::byte {1}, std::byte {0},
-    std::byte {1}, std::byte {1}, std::byte {0}, std::byte {0}, std::byte {1}, std::byte {1}, std::byte {0},
-    std::byte {0}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {0}, std::byte {0},
+    std::byte {0}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {0}, std::byte {1}, std::byte {0},
+    std::byte {1}, std::byte {1}, std::byte {0}, std::byte {0}, std::byte {1}, std::byte {0}, std::byte {0},
+    std::byte {1}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {0},
+    std::byte {0}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {0}, std::byte {1}, std::byte {0},
+    std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0},
     
     // 7 (39) '
     std::byte {0}, std::byte {0}, std::byte {1}, std::byte {1}, std::byte {0}, std::byte {0}, std::byte {0},
@@ -89,7 +94,6 @@ inline constexpr std::array DEFAULT_FONT_ATLAS {
     std::byte {0}, std::byte {0}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {0},
     std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0},
     
-    
     // 9 (41) )
     std::byte {0}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {0}, std::byte {0},
     std::byte {0}, std::byte {0}, std::byte {0}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {0},
@@ -98,7 +102,6 @@ inline constexpr std::array DEFAULT_FONT_ATLAS {
     std::byte {0}, std::byte {0}, std::byte {0}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {0},
     std::byte {0}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {0}, std::byte {0},
     std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0},
-    
     
     // 10 (42) *
     std::byte {1}, std::byte {0}, std::byte {1}, std::byte {0}, std::byte {1}, std::byte {0}, std::byte {0},
@@ -234,6 +237,7 @@ inline constexpr std::array DEFAULT_FONT_ATLAS {
     std::byte {1}, std::byte {1}, std::byte {0}, std::byte {0}, std::byte {1}, std::byte {1}, std::byte {0},
     std::byte {1}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {0},
     std::byte {0}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {0}, std::byte {0},
+    std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0},
     
     // 25 (57) 9
     std::byte {0}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {0}, std::byte {0},
@@ -403,6 +407,7 @@ inline constexpr std::array DEFAULT_FONT_ATLAS {
     std::byte {1}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {0}, std::byte {0},
     std::byte {1}, std::byte {1}, std::byte {0}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {0},
     std::byte {1}, std::byte {1}, std::byte {0}, std::byte {0}, std::byte {1}, std::byte {1}, std::byte {0},
+    std::byte {1}, std::byte {1}, std::byte {0}, std::byte {0}, std::byte {1}, std::byte {1}, std::byte {0},
     std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0},
     
     // 44 (76) L
@@ -550,7 +555,7 @@ inline constexpr std::array DEFAULT_FONT_ATLAS {
     std::byte {1}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {0},
     std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0},
     
-    // 60 (92) \
+    // 60 (92) <backslash>
     std::byte {1}, std::byte {1}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0},
     std::byte {1}, std::byte {1}, std::byte {1}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0},
     std::byte {0}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {0}, std::byte {0}, std::byte {0},
@@ -657,7 +662,6 @@ inline constexpr std::array DEFAULT_FONT_ATLAS {
     std::byte {0}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {0},
     std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {1}, std::byte {1}, std::byte {0},
     std::byte {0}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {0}, std::byte {0},
-    std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0},
     
     // 72 (104) h
     std::byte {1}, std::byte {1}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0},
@@ -758,7 +762,7 @@ inline constexpr std::array DEFAULT_FONT_ATLAS {
     std::byte {1}, std::byte {1}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0},
     std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0},
     
-    // 84 (115) s
+    // 83 (115) s
     std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0},
     std::byte {0}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {0},
     std::byte {1}, std::byte {1}, std::byte {1}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0},
@@ -767,7 +771,7 @@ inline constexpr std::array DEFAULT_FONT_ATLAS {
     std::byte {1}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {0}, std::byte {0},
     std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0},
     
-    // 85 (116) t
+    // 84 (116) t
     std::byte {0}, std::byte {1}, std::byte {1}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0},
     std::byte {0}, std::byte {1}, std::byte {1}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0},
     std::byte {1}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {0}, std::byte {0},
@@ -776,7 +780,7 @@ inline constexpr std::array DEFAULT_FONT_ATLAS {
     std::byte {0}, std::byte {0}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {0},
     std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0},
     
-    // 86 (117) u
+    // 85 (117) u
     std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0},
     std::byte {1}, std::byte {1}, std::byte {0}, std::byte {0}, std::byte {1}, std::byte {1}, std::byte {0},
     std::byte {1}, std::byte {1}, std::byte {0}, std::byte {0}, std::byte {1}, std::byte {1}, std::byte {0},
@@ -785,7 +789,7 @@ inline constexpr std::array DEFAULT_FONT_ATLAS {
     std::byte {0}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {0}, std::byte {0},
     std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0},
     
-    // 87 (118) v
+    // 86 (118) v
     std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0},
     std::byte {1}, std::byte {1}, std::byte {0}, std::byte {0}, std::byte {1}, std::byte {1}, std::byte {0},
     std::byte {1}, std::byte {1}, std::byte {0}, std::byte {0}, std::byte {1}, std::byte {1}, std::byte {0},
@@ -794,7 +798,7 @@ inline constexpr std::array DEFAULT_FONT_ATLAS {
     std::byte {0}, std::byte {0}, std::byte {1}, std::byte {1}, std::byte {0}, std::byte {0}, std::byte {0},
     std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0},
     
-    // 88 (119) w
+    // 87 (119) w
     std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0},
     std::byte {1}, std::byte {1}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {1}, std::byte {0},
     std::byte {1}, std::byte {1}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {1}, std::byte {0},
@@ -803,7 +807,7 @@ inline constexpr std::array DEFAULT_FONT_ATLAS {
     std::byte {1}, std::byte {1}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {1}, std::byte {0},
     std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0},
     
-    // 89 (120) x
+    // 88 (120) x
     std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0},
     std::byte {1}, std::byte {1}, std::byte {0}, std::byte {0}, std::byte {1}, std::byte {1}, std::byte {0},
     std::byte {0}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {0}, std::byte {0},
@@ -812,7 +816,7 @@ inline constexpr std::array DEFAULT_FONT_ATLAS {
     std::byte {1}, std::byte {1}, std::byte {0}, std::byte {0}, std::byte {1}, std::byte {1}, std::byte {0},
     std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0},
     
-    // 90 (121) y
+    // 89 (121) y
     std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0},
     std::byte {1}, std::byte {1}, std::byte {0}, std::byte {0}, std::byte {1}, std::byte {1}, std::byte {0},
     std::byte {1}, std::byte {1}, std::byte {0}, std::byte {0}, std::byte {1}, std::byte {1}, std::byte {0},
@@ -821,7 +825,7 @@ inline constexpr std::array DEFAULT_FONT_ATLAS {
     std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {1}, std::byte {1}, std::byte {0},
     std::byte {0}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {0}, std::byte {0},
     
-    // 91 (122) z
+    // 90 (122) z
     std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0},
     std::byte {1}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {0},
     std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {1}, std::byte {1}, std::byte {0},
@@ -830,7 +834,7 @@ inline constexpr std::array DEFAULT_FONT_ATLAS {
     std::byte {1}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {0},
     std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0},
     
-    // 92 (123) {
+    // 91 (123) {
     std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {1}, std::byte {1}, std::byte {0},
     std::byte {0}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {0},
     std::byte {0}, std::byte {1}, std::byte {1}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0},
@@ -839,7 +843,7 @@ inline constexpr std::array DEFAULT_FONT_ATLAS {
     std::byte {0}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {0},
     std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {1}, std::byte {1}, std::byte {0},
     
-    // 93 (124) |
+    // 92 (124) |
     std::byte {0}, std::byte {0}, std::byte {1}, std::byte {1}, std::byte {0}, std::byte {0}, std::byte {0},
     std::byte {0}, std::byte {0}, std::byte {1}, std::byte {1}, std::byte {0}, std::byte {0}, std::byte {0},
     std::byte {0}, std::byte {0}, std::byte {1}, std::byte {1}, std::byte {0}, std::byte {0}, std::byte {0},
@@ -848,7 +852,7 @@ inline constexpr std::array DEFAULT_FONT_ATLAS {
     std::byte {0}, std::byte {0}, std::byte {1}, std::byte {1}, std::byte {0}, std::byte {0}, std::byte {0},
     std::byte {0}, std::byte {0}, std::byte {1}, std::byte {1}, std::byte {0}, std::byte {0}, std::byte {0},
     
-    // 94 (125) }
+    // 93 (125) }
     std::byte {1}, std::byte {1}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0},
     std::byte {1}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {0}, std::byte {0},
     std::byte {0}, std::byte {0}, std::byte {0}, std::byte {1}, std::byte {1}, std::byte {0}, std::byte {0},
@@ -857,7 +861,7 @@ inline constexpr std::array DEFAULT_FONT_ATLAS {
     std::byte {1}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {1}, std::byte {0}, std::byte {0},
     std::byte {1}, std::byte {1}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0},
     
-    // 95 (126) ~
+    // 94 (126) ~
     std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0},
     std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0},
     std::byte {0}, std::byte {1}, std::byte {1}, std::byte {0}, std::byte {0}, std::byte {1}, std::byte {0},
@@ -866,7 +870,7 @@ inline constexpr std::array DEFAULT_FONT_ATLAS {
     std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0},
     std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0},
     
-    // 96 (127) <Del>
+    // 95 (127) <Del>
     std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0},
     std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0},
     std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0}, std::byte {0},
