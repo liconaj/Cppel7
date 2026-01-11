@@ -1,5 +1,7 @@
 #include "virtual_machine.h"
 
+#include <algorithm>
+
 namespace cppel7 {
 
 VirtualMachine::VirtualMachine(const size_t size) : m_memory(size)

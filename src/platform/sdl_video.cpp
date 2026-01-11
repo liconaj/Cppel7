@@ -1,7 +1,8 @@
-#include "core/constants.h"
 #include "sdl_video.h"
+#include "core/constants.h"
 
-#include <assert.h>
+#include <cstring>
+#include <stdexcept>
 
 namespace cppel7 {
 
@@ -22,13 +23,14 @@ SdlVideo::~SdlVideo()
 
 void SdlVideo::initialize(const Config& config)
 {
-    m_logicalWidth  = config.width * CELL_SIZE;
+    m_logicalWidth = config.width * CELL_SIZE;
     m_logicalHeight = config.height * CELL_SIZE;
 
     const int windowWidth {m_logicalWidth * config.scale};
     const int windowHeight {m_logicalHeight * config.scale};
 
-    m_window = SDL_CreateWindow(config.title.c_str(), windowWidth, windowHeight, SDL_WINDOW_RESIZABLE);
+    m_window = SDL_CreateWindow(config.title.c_str(), windowWidth, windowHeight,
+                                SDL_WINDOW_RESIZABLE);
     if (m_window == nullptr) {
         throw std::runtime_error(SDL_GetError());
     }
@@ -40,10 +42,12 @@ void SdlVideo::initialize(const Config& config)
     }
 
     // Make the renderer content scaled up by integer multiples to fit the output resolution
-    SDL_SetRenderLogicalPresentation(m_renderer, m_logicalWidth, m_logicalHeight, SDL_LOGICAL_PRESENTATION_INTEGER_SCALE);
+    SDL_SetRenderLogicalPresentation(m_renderer, m_logicalWidth, m_logicalHeight,
+                                     SDL_LOGICAL_PRESENTATION_INTEGER_SCALE);
     SDL_SetDefaultTextureScaleMode(m_renderer, SDL_SCALEMODE_PIXELART);
 
-    m_texture = SDL_CreateTexture(m_renderer, SDL_PIXELFORMAT_BGRX32, SDL_TEXTUREACCESS_STREAMING, m_logicalWidth, m_logicalHeight);
+    m_texture = SDL_CreateTexture(m_renderer, SDL_PIXELFORMAT_BGRX32, SDL_TEXTUREACCESS_STREAMING,
+                                  m_logicalWidth, m_logicalHeight);
     if (m_texture == nullptr) {
         throw std::runtime_error(SDL_GetError());
     }

@@ -1,7 +1,9 @@
 #ifndef CPPEL7_FRAMEBUFFER_H
 #define CPPEL7_FRAMEBUFFER_H
 
+#include <cstdint>
 #include <span>
+#include <vector>
 
 namespace cppel7 {
 

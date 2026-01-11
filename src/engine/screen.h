@@ -4,6 +4,8 @@
 #include "core/types.h"
 #include "virtual_machine/virtual_machine.h"
 
+#include <optional>
+
 namespace cppel7 {
 
 class Screen

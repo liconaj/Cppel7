@@ -1,5 +1,7 @@
-#include "core/constants.h"
 #include "screen_renderer.h"
+#include "core/constants.h"
+
+#include <cstring>
 
 namespace cppel7 {
 
@@ -18,7 +20,8 @@ void ScreenRenderer::render(FrameBuffer& frameBuffer) const
     }
 }
 
-void ScreenRenderer::drawCell(FrameBuffer& frameBuffer, const Cell& cell, const int cellX, const int cellY) const
+void ScreenRenderer::drawCell(FrameBuffer& frameBuffer, const Cell& cell, const int cellX,
+                              const int cellY) const
 {
     const auto& [glyphIndex, colorAttr] {cell};
 
@@ -50,9 +53,9 @@ PixelColor ScreenRenderer::getPaletteColor(const PaletteIndex index) const
 
 bool ScreenRenderer::isGlyphPixelSet(GlyphIndex glyph, const int pixelIndex) const
 {
-    const Address address {ADDR_FONT_ATLAS_BASE + static_cast<Address>(glyph) * FONT_ATLAS_BYTES_PER_GLYPH};
+    const Address address {ADDR_FONT_ATLAS_BASE
+                           + static_cast<Address>(glyph) * FONT_ATLAS_BYTES_PER_GLYPH};
     return (m_virtualMachine.peek(address + pixelIndex) & std::byte {0x01}) != std::byte {0};
 }
-
 
 } // namespace cppel7
